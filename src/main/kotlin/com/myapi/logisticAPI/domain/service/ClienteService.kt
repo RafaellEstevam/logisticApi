@@ -1,11 +1,11 @@
 package com.myapi.logisticAPI.domain.service
 
+import com.myapi.logisticAPI.domain.exception.BusinessException
+import com.myapi.logisticAPI.domain.model.Cliente
+import com.myapi.logisticAPI.domain.repository.ClienteRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.util.StringUtils
-import myapi.com.br.logisticAPI.domain.exception.BusinessException
-import myapi.com.br.logisticAPI.domain.model.Cliente
-import myapi.com.br.logisticAPI.domain.repository.ClienteRepository
 
 @Service
 class ClienteService(private val clienteRepository: ClienteRepository) {
@@ -25,6 +25,11 @@ class ClienteService(private val clienteRepository: ClienteRepository) {
         }
 
         return clienteRepository.save(cliente);
+    }
+
+    @Transactional
+    fun deletar(clienteId: Long) {
+        clienteRepository.deleteById(clienteId);
     }
 
 

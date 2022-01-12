@@ -1,13 +1,14 @@
 package com.myapi.logisticAPI.domain.service
 
+import com.myapi.logisticAPI.domain.exception.BusinessException
+import com.myapi.logisticAPI.domain.model.Entrega
+import com.myapi.logisticAPI.domain.model.StatusEntrega
+import com.myapi.logisticAPI.domain.repository.ClienteRepository
+import com.myapi.logisticAPI.domain.repository.EntregaRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.util.StringUtils
-import myapi.com.br.logisticAPI.domain.exception.BusinessException
-import myapi.com.br.logisticAPI.domain.model.Entrega
-import myapi.com.br.logisticAPI.domain.model.StatusEntrega
-import myapi.com.br.logisticAPI.domain.repository.ClienteRepository
-import myapi.com.br.logisticAPI.domain.repository.EntregaRepository
+
 import java.time.OffsetDateTime
 
 @Service
@@ -33,7 +34,7 @@ class EntregaService(val entregaRepository: EntregaRepository, val clienteReposi
         }
 
 
-        val clienteOptional = clienteRepository.findById(entrega.cliente.id);
+        val clienteOptional = clienteRepository.findById(entrega.cliente.id!!);
 
 
         if(!clienteOptional.isPresent){

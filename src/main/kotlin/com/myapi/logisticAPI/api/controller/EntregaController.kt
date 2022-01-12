@@ -1,13 +1,14 @@
 package com.myapi.logisticAPI.api.controller
 
+import com.myapi.logisticAPI.api.assembler.EntregaAssembler
+import com.myapi.logisticAPI.api.model.request.EntregaRequest
+import com.myapi.logisticAPI.api.model.response.EntregaResponse
+import com.myapi.logisticAPI.domain.repository.EntregaRepository
+import com.myapi.logisticAPI.domain.service.EntregaService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import myapi.com.br.logisticAPI.api.assembler.EntregaAssembler
-import myapi.com.br.logisticAPI.api.model.request.EntregaRequest
-import myapi.com.br.logisticAPI.api.model.response.EntregaResponse
-import myapi.com.br.logisticAPI.domain.repository.EntregaRepository
-import myapi.com.br.logisticAPI.domain.service.EntregaService
+
 import javax.validation.Valid
 
 @RestController

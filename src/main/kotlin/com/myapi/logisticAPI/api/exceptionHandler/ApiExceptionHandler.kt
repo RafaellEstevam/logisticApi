@@ -1,5 +1,6 @@
 package com.myapi.logisticAPI.api.exceptionHandler
 
+import com.myapi.logisticAPI.domain.exception.BusinessException
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.context.request.WebRequest
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
-import myapi.com.br.logisticAPI.domain.exception.BusinessException
 import java.time.OffsetDateTime
 
 @ControllerAdvice

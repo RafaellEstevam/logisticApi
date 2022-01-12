@@ -9,7 +9,7 @@ data class Entrega(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long?,
+    var id: Long? = null,
 
     val taxa: BigDecimal,
 

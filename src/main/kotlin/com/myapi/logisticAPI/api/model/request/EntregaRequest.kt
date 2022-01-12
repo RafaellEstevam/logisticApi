@@ -1,7 +1,5 @@
 package com.myapi.logisticAPI.api.model.request
 
-import myapi.com.br.logisticAPI.api.model.request.ClienteIdRequest
-import myapi.com.br.logisticAPI.api.model.request.DestinatarioRequest
 import java.math.BigDecimal
 import javax.validation.Valid
 import javax.validation.constraints.NotNull

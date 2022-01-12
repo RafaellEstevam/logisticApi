@@ -1,13 +1,13 @@
 package com.myapi.logisticAPI.api.assembler
 
 
+import com.myapi.logisticAPI.api.model.request.EntregaRequest
+import com.myapi.logisticAPI.api.model.response.DestinatarioResponse
+import com.myapi.logisticAPI.api.model.response.EntregaResponse
+import com.myapi.logisticAPI.domain.model.Cliente
+import com.myapi.logisticAPI.domain.model.Destinatario
+import com.myapi.logisticAPI.domain.model.Entrega
 import org.springframework.stereotype.Component
-import myapi.com.br.logisticAPI.api.model.request.EntregaRequest
-import myapi.com.br.logisticAPI.api.model.response.DestinatarioResponse
-import myapi.com.br.logisticAPI.api.model.response.EntregaResponse
-import myapi.com.br.logisticAPI.domain.model.Cliente
-import myapi.com.br.logisticAPI.domain.model.Destinatario
-import myapi.com.br.logisticAPI.domain.model.Entrega
 import kotlin.streams.toList
 
 @Component
@@ -20,8 +20,8 @@ class EntregaAssembler() {
 
         val destinatario = this.buildDestinatario(entregaRequest);
 
-        return Entrega(null, entregaRequest.taxa!!, null,null,null,
-        cliente, destinatario);
+        return Entrega(taxa = entregaRequest.taxa!!, dataPedido =  null, dataFinalizacao = null, status = null,
+        cliente = cliente, destinatario = destinatario);
     }
 
     fun toResponseModel(entrega: Entrega): EntregaResponse {

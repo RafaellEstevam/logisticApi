@@ -1,6 +1,6 @@
 package com.myapi.logisticAPI.api.model.response
 
-import myapi.com.br.logisticAPI.domain.model.StatusEntrega
+import com.myapi.logisticAPI.domain.model.StatusEntrega
 import java.math.BigDecimal
 import java.time.OffsetDateTime
 

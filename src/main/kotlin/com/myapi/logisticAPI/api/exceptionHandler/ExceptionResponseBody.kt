@@ -1,7 +1,6 @@
 package com.myapi.logisticAPI.api.exceptionHandler
 
 import com.fasterxml.jackson.annotation.JsonInclude
-import myapi.com.br.logisticAPI.api.exceptionHandler.Atributo
 import java.time.OffsetDateTime
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
