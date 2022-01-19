@@ -21,7 +21,7 @@ class ClienteAssembler {
     }
 
 
-    fun toResponseEntityCollection(clientes: List<Cliente>): List<ClienteResponse> {
+    fun toResponseModelCollection(clientes: List<Cliente>): List<ClienteResponse> {
 
         return clientes.stream().map { cliente -> this.toResponseEntity(cliente)}
             .collect(Collectors.toList())

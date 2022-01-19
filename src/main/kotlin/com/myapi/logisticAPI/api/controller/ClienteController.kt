@@ -6,7 +6,6 @@ import com.myapi.logisticAPI.api.model.response.ClienteResponse
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import com.myapi.logisticAPI.domain.model.Cliente
 import com.myapi.logisticAPI.domain.repository.ClienteRepository
 import com.myapi.logisticAPI.domain.service.ClienteService
 import javax.validation.Valid
@@ -24,7 +23,7 @@ class ClienteController(
 
         val clientes = clienteRepository.findAll()
 
-        return clienteAssembler.toResponseEntityCollection(clientes)
+        return clienteAssembler.toResponseModelCollection(clientes)
     }
 
     @GetMapping("{clienteId}")

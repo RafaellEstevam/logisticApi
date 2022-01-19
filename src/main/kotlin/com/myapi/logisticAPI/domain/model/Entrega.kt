@@ -24,6 +24,11 @@ data class Entrega(
     var cliente: Cliente,
 
     @Embedded
-    val destinatario: Destinatario
+    val destinatario: Destinatario,
+
+    @OneToMany(mappedBy = "entrega")
+    val ocorrencias: List<Ocorrencia> = ArrayList<Ocorrencia>()
+
+
 
 )
