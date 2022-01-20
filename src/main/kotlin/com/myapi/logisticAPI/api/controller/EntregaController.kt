@@ -4,6 +4,7 @@ import com.myapi.logisticAPI.api.assembler.EntregaAssembler
 import com.myapi.logisticAPI.api.model.request.EntregaRequest
 import com.myapi.logisticAPI.api.model.response.EntregaResponse
 import com.myapi.logisticAPI.domain.repository.EntregaRepository
+import com.myapi.logisticAPI.domain.service.CancelarEntregaService
 import com.myapi.logisticAPI.domain.service.EntregaService
 import com.myapi.logisticAPI.domain.service.FinalizarEntregaService
 import org.springframework.http.HttpStatus
@@ -15,7 +16,8 @@ import javax.validation.Valid
 @RestController
 @RequestMapping("entregas")
 class EntregaController(private val entregaRepository: EntregaRepository, private val entregaAssembler: EntregaAssembler,
-                        val entregaService: EntregaService, private val finalizarEntregaService: FinalizarEntregaService
+                        private val entregaService: EntregaService, private val finalizarEntregaService: FinalizarEntregaService,
+                        private val cancelarEntregaService: CancelarEntregaService
 ) {
 
     @GetMapping
@@ -56,6 +58,12 @@ class EntregaController(private val entregaRepository: EntregaRepository, privat
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun finalizar(@PathVariable entregaId: Long){
         finalizarEntregaService.finalizar(entregaId);
+    }
+
+    @PutMapping("{entregaId}/cancelamento")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    fun cancelar(@PathVariable entregaId: Long){
+        cancelarEntregaService.cancelar(entregaId)
     }
 
 }
