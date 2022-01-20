@@ -5,6 +5,7 @@ import com.myapi.logisticAPI.api.model.request.OcorrenciaRequest
 import com.myapi.logisticAPI.api.model.response.OcorrenciaResponse
 import com.myapi.logisticAPI.domain.model.Entrega
 import com.myapi.logisticAPI.domain.repository.OcorrenciaRepository
+import com.myapi.logisticAPI.domain.service.BuscaEntregaService
 import com.myapi.logisticAPI.domain.service.OcorrenciaService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
@@ -21,13 +22,17 @@ import javax.validation.Valid
 class OcorrenciaController(
     private val ocorrenciaRepository: OcorrenciaRepository,
     private val ocorrenciaAssembler: OcorrenciaAssembler,
-    private val ocorrenciaService: OcorrenciaService
+    private val ocorrenciaService: OcorrenciaService,
+    private val buscaEntregaService: BuscaEntregaService
+
 ) {
 
     @GetMapping
-    fun listar(): List<OcorrenciaResponse> {
+    fun listarPorEntrega(@PathVariable entregaId: Long): List<OcorrenciaResponse> {
 
-        val ocorrencias = ocorrenciaRepository.findAll();
+        buscaEntregaService.buscar(entregaId)
+
+        val ocorrencias = ocorrenciaRepository.findByEntregaId(entregaId)
 
         return ocorrenciaAssembler.toResponseModelCollection(ocorrencias)
     }

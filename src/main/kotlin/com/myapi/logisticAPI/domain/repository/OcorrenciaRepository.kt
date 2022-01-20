@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface OcorrenciaRepository : JpaRepository<Ocorrencia, Long> {
+
+    fun findByEntregaId(entregaId: Long): List<Ocorrencia>
 }

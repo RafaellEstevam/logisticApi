@@ -5,6 +5,7 @@ import com.myapi.logisticAPI.domain.model.StatusEntrega
 import com.myapi.logisticAPI.domain.repository.EntregaRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.time.OffsetDateTime
 
 @Service
 class FinalizarEntregaService(private val entregaRepository: EntregaRepository) {
@@ -17,6 +18,7 @@ class FinalizarEntregaService(private val entregaRepository: EntregaRepository) 
 
         if (entrega.status!! == StatusEntrega.PENDENTE) {
             entrega.status = StatusEntrega.FINALIZADA
+            entrega.dataFinalizacao = OffsetDateTime.now()
         } else {
             throw BusinessException("Entrega não pode ser finalizada!")
         }

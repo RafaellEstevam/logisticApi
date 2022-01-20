@@ -5,6 +5,7 @@ import com.myapi.logisticAPI.domain.model.StatusEntrega
 import com.myapi.logisticAPI.domain.repository.EntregaRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.time.OffsetDateTime
 
 @Service
 class CancelarEntregaService(private val entregaRepository: EntregaRepository) {
@@ -15,6 +16,7 @@ class CancelarEntregaService(private val entregaRepository: EntregaRepository) {
 
         if (entrega.status == StatusEntrega.PENDENTE) {
             entrega.status = StatusEntrega.CANCELADA
+            entrega.dataFinalizacao = OffsetDateTime.now()
         } else {
             throw BusinessException("Entrega não pode ser cancelada!")
         }
