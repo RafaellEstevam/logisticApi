@@ -5,6 +5,7 @@ import com.myapi.logisticAPI.api.model.request.EntregaRequest
 import com.myapi.logisticAPI.api.model.response.EntregaResponse
 import com.myapi.logisticAPI.domain.repository.EntregaRepository
 import com.myapi.logisticAPI.domain.service.EntregaService
+import com.myapi.logisticAPI.domain.service.FinalizarEntregaService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -14,9 +15,8 @@ import javax.validation.Valid
 @RestController
 @RequestMapping("entregas")
 class EntregaController(private val entregaRepository: EntregaRepository, private val entregaAssembler: EntregaAssembler,
-                        val entregaService: EntregaService
+                        val entregaService: EntregaService, private val finalizarEntregaService: FinalizarEntregaService
 ) {
-
 
     @GetMapping
     fun listar(): List<EntregaResponse>{
@@ -24,14 +24,12 @@ class EntregaController(private val entregaRepository: EntregaRepository, privat
         return entregaAssembler.toResponseModelCollection(entregaRepository.findAll());
     }
 
-
     @GetMapping("{entregaId}")
     fun buscar(@PathVariable entregaId: Long): ResponseEntity<EntregaResponse>{
 
         return entregaRepository.findById(entregaId).map { entrega -> ResponseEntity.ok(entregaAssembler.toResponseModel(entrega))}
             .orElse(ResponseEntity.notFound().build());
     }
-
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -54,8 +52,11 @@ class EntregaController(private val entregaRepository: EntregaRepository, privat
 
     }
 
-
-
+    @PutMapping("{entregaId}/finalizacao")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    fun finalizar(@PathVariable entregaId: Long){
+        finalizarEntregaService.finalizar(entregaId);
+    }
 
 }
 
